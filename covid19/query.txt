@@ -1,0 +1,26 @@
+SELECT `denominazione_provincia`,SUM(totale_casi) FROM `tab_dpc_covid19_ita_province` GROUP BY `denominazione_provincia`
+
+
+SELECT `denominazione_provincia`, SUM(totale_casi) AS totale_casi FROM `tab_dpc_covid19_ita_province` GROUP BY `denominazione_provincia`
+
+
+
+$conn = mysqli_connect("localhost","root","456Stella!","covid19");
+
+#$sqlQuery = "SELECT denominazione_provinci, SUM(totale_casi) FROM tab_dpc_covid19_ita_province GROUP BY denominazione_provincia";
+
+$sqlQuery = "SELECT denominazione_provincia, SUM(totale_casi) AS totale_casi FROM tab_dpc_covid19_ita_province GROUP BY denominazione_provincia";
+
+
+
+#$sql  = 'SELECT `denominazione_provincia`, SUM(totale_casi) AS totale_casi FROM `tab_dpc_covid19_ita_province` GROUP BY `denominazione_provincia`';
+
+
+$result = mysqli_query($conn,$sqlQuery);
+
+$data = array();
+foreach ($result as $row) {
+	$data[] = $row;
+}
+
+mysqli_close($conn);
